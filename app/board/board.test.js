@@ -3,6 +3,19 @@ import createBoard from "./board";
 
 describe("Given a function called createBoard", () => {
   describe("When it recieve (2,2)", () => {
+    test("Then it should return a length 3", () => {
+      const rowNumber = 2;
+      const colNumber = 2;
+      const newBoard = createBoard(rowNumber, colNumber);
+
+      const expectedResult = 3;
+
+      const result = newBoard.length;
+      expect(expectedResult).toBe(result);
+    });
+  });
+
+  describe("When it recieve (2,2)", () => {
     test("Then it should return a 3x3 bidimensional array", () => {
       const rowNumber = 2;
       const colNumber = 2;
@@ -16,19 +29,6 @@ describe("Given a function called createBoard", () => {
       const result = createBoard(rowNumber, colNumber);
 
       expect(expectedResult).toEqual(result);
-    });
-  });
-
-  describe("When it recieve (2,2)", () => {
-    test("Then it should return a length of 3", () => {
-      const rowNumber = 2;
-      const colNumber = 2;
-      const newBoard = createBoard(rowNumber, colNumber);
-
-      const expectedResult = 3;
-
-      const result = newBoard.length;
-      expect(expectedResult).toBe(result);
     });
   });
 });
