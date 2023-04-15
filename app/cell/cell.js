@@ -11,6 +11,10 @@ class Cell {
   die() {
     this.isAlive = false;
   }
+
+  live() {
+    this.isAlive = true;
+  }
 }
 
 export default Cell;

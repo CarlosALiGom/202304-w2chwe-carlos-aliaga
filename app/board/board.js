@@ -15,9 +15,9 @@ const createBoard = (totalRow, totalCol) => {
   return table;
 };
 
-const tablero = createBoard(2, 2);
+const board = createBoard(2, 2);
 
-tablero[0][0].die();
-console.table(tablero);
+board[0][0].die();
+console.table(board);
 
 export default createBoard;
