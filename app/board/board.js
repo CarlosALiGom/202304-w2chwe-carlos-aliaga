@@ -1,10 +1,14 @@
-import Cell from "../cell/cell";
+import Cell from "../cell/cell.js";
 
 class World {
-  table;
+  board;
+
+  constructor(totalRow, totalCol) {
+    this.board = this.createBoard(totalRow, totalCol);
+  }
 
   createBoard(totalRow, totalCol) {
-    const table = [];
+    const board = [];
 
     for (let rowIndex = -1; rowIndex < totalRow; rowIndex++) {
       const row = [];
@@ -13,11 +17,34 @@ class World {
         row.push(new Cell(colIndex, rowIndex));
       }
 
-      table.push(row);
+      board.push(row);
     }
 
-    return table;
+    return board;
+  }
+
+  countLiveNeighbours(board, cellX, cellY) {
+    let countAlive = 0;
+    for (let i = cellY - 1; i <= cellY + 1; i++) {
+      for (let j = cellX - 1; j <= cellX + 1; j++) {
+        if (board[i][j].isAlive === true) {
+          countAlive++;
+          console.log(i, j);
+        }
+      }
+    }
+
+    if (board[cellX][cellY].isAlive === true) {
+      countAlive--;
+    }
+
+    return countAlive;
   }
 }
 
 export default World;
+
+const newWorld = new World(1, 1);
+console.log(newWorld.board);
+const result = newWorld.countLiveNeighbours(newWorld.board, 1, 1);
+console.log(result);
