@@ -25,9 +25,13 @@ class World {
 
   countLiveNeighbours(board, cellX, cellY) {
     let countAlive = 0;
-    for (let i = cellY - 1; i <= cellY + 1; i++) {
-      for (let j = cellX - 1; j <= cellX + 1; j++) {
-        if (board[i][j].isAlive === true) {
+    const totalRow = 4;
+    const totalCol = 4;
+    for (let i = cellX - 1; i <= cellX + 1 && i <= totalRow; i++) {
+      for (let j = cellY - 1; j <= cellY + 1 && j <= totalCol; j++) {
+        if (i < 0 || j < 0) {
+          continue;
+        } else if (board[i][j].isAlive === true) {
           countAlive++;
           console.log(i, j);
         }
@@ -44,7 +48,10 @@ class World {
 
 export default World;
 
-const newWorld = new World(1, 1);
-console.log(newWorld.board);
-const result = newWorld.countLiveNeighbours(newWorld.board, 1, 1);
-console.log(result);
+const newWorld = new World(4, 4);
+console.table(
+  newWorld.board.map((element) => element.map((index) => index.isAlive))
+);
+const result1 = newWorld.countLiveNeighbours(newWorld.board, 4, 4);
+
+console.log(result1);
