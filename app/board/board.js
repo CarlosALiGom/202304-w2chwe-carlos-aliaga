@@ -33,7 +33,6 @@ class World {
           continue;
         } else if (board[i][j].isAlive === true) {
           countAlive++;
-          console.log(i, j);
         }
       }
     }
@@ -42,7 +41,16 @@ class World {
       countAlive--;
     }
 
-    return countAlive;
+    if (
+      board[cellX][cellY].isAlive === true &&
+      (countAlive > 3 || countAlive < 2)
+    ) {
+      board[cellX][cellY].die();
+    }
+
+    if (board[cellX][cellY].isAlive === false && countAlive === 3) {
+      board[cellX][cellY].live();
+    }
   }
 }
 
@@ -52,6 +60,9 @@ const newWorld = new World(4, 4);
 console.table(
   newWorld.board.map((element) => element.map((index) => index.isAlive))
 );
-const result1 = newWorld.countLiveNeighbours(newWorld.board, 4, 4);
-
-console.log(result1);
+newWorld.countLiveNeighbours(newWorld.board, 2, 2);
+newWorld.countLiveNeighbours(newWorld.board, 2, 3);
+newWorld.countLiveNeighbours(newWorld.board, 2, 4);
+console.table(
+  newWorld.board.map((element) => element.map((index) => index.isAlive))
+);
