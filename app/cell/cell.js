@@ -1,11 +1,12 @@
 class Cell {
   positionY;
   positionX;
-  isAlive = true;
+  isAlive;
 
-  constructor(positionY, positionX) {
+  constructor(positionY, positionX, isAlive = true) {
     this.positionY = positionY;
     this.positionX = positionX;
+    this.isAlive = isAlive;
   }
 
   die() {
