@@ -29,11 +29,19 @@ class World {
 
   countLiveNeighbours(board, cellX, cellY) {
     let countAlive = 0;
-    for (let i = cellX - 1; i <= cellX + 1 && i <= this.totalRows; i++) {
-      for (let j = cellY - 1; j <= cellY + 1 && j <= this.totalCols; j++) {
-        if (i < 0 || j < 0) {
+    for (
+      let rowNumber = cellX - 1;
+      rowNumber <= cellX + 1 && rowNumber <= this.totalRows;
+      rowNumber++
+    ) {
+      for (
+        let colNumber = cellY - 1;
+        colNumber <= cellY + 1 && colNumber <= this.totalCols;
+        colNumber++
+      ) {
+        if (rowNumber < 0 || colNumber < 0) {
           continue;
-        } else if (board[i][j].isAlive === true) {
+        } else if (board[rowNumber][colNumber].isAlive === true) {
           countAlive++;
         }
       }
@@ -68,7 +76,6 @@ class World {
       newBoard.push(newRow);
     }
 
-    console.log(newWorld.board);
     return newBoard;
   }
 }
